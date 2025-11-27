@@ -28,6 +28,8 @@ This extension contributes the following settings:
 
 ## Usage
 
+![AutoDoc Demo](readme_images/autodoc-image.gif)
+
 1.  Open a supported file (TypeScript, JavaScript, Python).
 2.  Write a function.
 3.  Pause for a moment (default 1.5s).

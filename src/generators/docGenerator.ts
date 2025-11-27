@@ -15,7 +15,7 @@ export class DocGenerator {
             
             const indent = ' '.repeat(symbol.range.start.character);
             const indentedDocString = docString.split('\n').map((line, index) => {
-                if (index === 0) return line; // First line often handled by caller insertion
+                if (index === 0) return line;
                 return indent + line;
             }).join('\n');
 

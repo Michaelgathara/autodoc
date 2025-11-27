@@ -23,7 +23,7 @@ export class OpenRouterClient {
             messages: [
                 {
                     role: "system",
-                    content: "You are an expert code documenter. Return ONLY the docstring for the code provided. Do not include markdown code blocks (```), do not include the function signature, and do not include any conversational text. Just the raw docstring content formatted for the specific language."
+                    content: "You are an expert code documenter. Return ONLY the docstring for the code provided. Do not include markdown code blocks (```), do not include the function signature, and do not include any conversational text. Just the raw docstring content formatted for the specific language. If the code is simple you may return an example of an input and output within the docstring."
                 },
                 {
                     role: "user",
