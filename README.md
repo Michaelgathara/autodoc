@@ -30,11 +30,11 @@ This extension contributes the following settings:
 
 ### Generating a new docstring for a function
 
-![AutoDoc Demo](readme_images/autodoc-example.gif)
+<img src="readme_images/autodoc-example.gif" alt="AutoDoc Demo" width="100%">
 
 ### Changing an existing docstring when a function changes
 
-![AutoDoc Change Demo](readme_images/autodoc-example-new-comment.gif)
+<img src="readme_images/autodoc-example-new-comment.gif" alt="AutoDoc Change Demo" width="100%">
 
 1.  Open a supported file (TypeScript, JavaScript, Python).
 2.  Write a function.
