@@ -7,6 +7,7 @@ import { ConfigService } from './config';
 export class AutoDocController implements vscode.Disposable {
     private _disposables: vscode.Disposable[] = [];
     private _debouncer: Debouncer;
+    private _dirtyRanges: vscode.Range[] = [];
 
     constructor() {
         this._debouncer = new Debouncer(1500);
@@ -19,21 +20,26 @@ export class AutoDocController implements vscode.Disposable {
     private async _onDocumentChanged(event: vscode.TextDocumentChangeEvent) {
         if (!event.contentChanges.length) return;
         
+        event.contentChanges.forEach(change => {
+            this._dirtyRanges.push(change.range);
+        });
+
         await this._debouncer.debounce(async () => {
-            await this._processDocument(event.document);
+            await this._processDocument(event.document, [...this._dirtyRanges]);
+            this._dirtyRanges = [];
         });
     }
 
     private async _forceGenerate() {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
-            await this._processDocument(editor.document);
+            const fullRange = new vscode.Range(0, 0, editor.document.lineCount, 0);
+            await this._processDocument(editor.document, [fullRange], true);
         }
     }
 
-    private async _processDocument(document: vscode.TextDocument) {
+    private async _processDocument(document: vscode.TextDocument, changedRanges: vscode.Range[], force = false) {
         if (!ConfigService.enable) return;
-
         if (!ConfigService.apiKey) {
             console.log('AutoDoc: No API Key set.');
             return;
@@ -41,17 +47,39 @@ export class AutoDocController implements vscode.Disposable {
 
         const symbols = await SymbolUtils.getDocumentSymbols(document);
         const functions = SymbolUtils.extractFunctions(symbols);
-        const functionsNeedingDocs = functions.filter(f => !SymbolUtils.hasDocString(document, f));
 
-        for (const func of functionsNeedingDocs) {
-            const docString = await DocGenerator.generate(document, func);
+        for (const func of functions) {
+            const existingDocRange = SymbolUtils.getDocStringRange(document, func);
             
-            if (docString) {
-                const edit = new vscode.WorkspaceEdit();
-                edit.insert(document.uri, func.range.start, docString);
-                await vscode.workspace.applyEdit(edit);
+            if (!existingDocRange) {
+                const wasEdited = changedRanges.some(range => func.range.contains(range));
                 
-                break; 
+                if (wasEdited || force) {
+                    const docString = await DocGenerator.generate(document, func);
+                    if (docString) {
+                        const indent = ' '.repeat(func.range.start.character);
+                        const textToInsert = docString + '\n' + indent; 
+                        
+                        const edit = new vscode.WorkspaceEdit();
+                        edit.insert(document.uri, func.range.start, textToInsert);
+                        await vscode.workspace.applyEdit(edit);
+                        return;
+                    }
+                }
+            } 
+            else {
+                const codeChanged = changedRanges.some(range => func.range.contains(range));
+                const docsChanged = changedRanges.some(range => existingDocRange.intersection(range));
+
+                if (codeChanged && !docsChanged) {
+                    const docString = await DocGenerator.generate(document, func);
+                    if (docString) {
+                        const edit = new vscode.WorkspaceEdit();
+                        edit.replace(document.uri, existingDocRange, docString); 
+                        await vscode.workspace.applyEdit(edit);
+                        return; 
+                    }
+                }
             }
         }
     }

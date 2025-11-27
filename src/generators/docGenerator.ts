@@ -7,22 +7,35 @@ export class DocGenerator {
         const functionCode = document.getText(functionRange);
         
         const languageId = document.languageId;
-        const prompt = `Generate a docstring for this ${languageId} function:\n\n${functionCode}\n\nFormat: Return only the docstring block.`;
+        const prompt = `
+        Update or generate a docstring for this ${languageId} function.
+        Code:
+        ${functionCode}
+        
+        Instructions:
+        - Return ONLY the docstring block (e.g., /** ... */ or """ ... """).
+        - Do not include the function signature in the output.
+        - Do not include markdown fences.
+        - Use the standard style for ${languageId}.
+        - Ensure indentation is consistent with the code provided.
+        `;
 
         try {
             const docString = await OpenRouterClient.generateCompletion(prompt);
             
             const indent = ' '.repeat(symbol.range.start.character);
-            const indentedDocString = docString.split('\n').map((line, index) => {
-                if (index === 0) return line;
-                return indent + line;
-            }).join('\n');
+            const lines = docString.split('\n');
+            
+            const indentedLines = lines.map((line, index) => {
+                if (index === 0) return line.trimStart(); 
+                return indent + line.trimStart();
+            });
 
-            return indentedDocString + '\n' + indent;
+            let finalString = indentedLines.join('\n');
+            
+            return finalString;
         } catch (error) {
             console.error('AutoDoc Gen Error:', error);
-            // Fallback or silent fail?
-            // For now, let's just show an error message if it's an explicit trigger
             return null;
         }
     }
