@@ -1,0 +1,58 @@
+{
+  "name": "autodoc-generator",
+  "displayName": "AutoDoc Generator",
+  "description": "Automatically generates documentation for functions as they are written.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:javascript",
+    "onLanguage:python"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "autodoc.generate",
+        "title": "AutoDoc: Generate Docs"
+      }
+    ],
+    "configuration": {
+      "title": "AutoDoc",
+      "properties": {
+        "autodoc.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic documentation generation."
+        },
+        "autodoc.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenRouter API Key for AI generation."
+        },
+        "autodoc.model": {
+          "type": "string",
+          "default": "openai/gpt-4o",
+          "description": "OpenRouter model to use (e.g., anthropic/claude-3-haiku, openai/gpt-4o)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run compile -- --sourcemap --watch",
+    "package": "npm run compile -- --minify"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.106.1",
+    "esbuild": "^0.27.0",
+    "typescript": "^5.9.3"
+  }
+}
