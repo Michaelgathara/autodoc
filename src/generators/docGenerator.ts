@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import { OpenRouterClient } from '../utils/openRouter';
-import { ConfigService } from '../config';
 
 export class DocGenerator {
     static async generate(document: vscode.TextDocument, symbol: vscode.DocumentSymbol): Promise<string | null> {
