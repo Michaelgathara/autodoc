@@ -28,7 +28,7 @@ This extension contributes the following settings:
 
 ## Usage
 
-![AutoDoc Demo](readme_images/autodoc-image.gif)
+![AutoDoc Demo](readme_images/autodoc-example.gif)
 
 1.  Open a supported file (TypeScript, JavaScript, Python).
 2.  Write a function.
