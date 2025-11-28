@@ -1,6 +1,6 @@
 # AutoDoc Generator
 
-AutoDoc Generator is a VSCode extension that uses AI to automatically generate documentation for your functions as you write them. It detects when you pause typing, analyzes your code, and inserts meaningful docstrings using the latest LLMs via OpenRouter.
+AutoDoc Generator is a VSCode extension that uses AI to automatically generate documentation for your functions as you write them. It detects when you pause typing, analyzes your code, and inserts meaningful docstrings using the LLM of your choice via OpenRouter.
 
 ## Features
 
@@ -38,8 +38,7 @@ This extension contributes the following settings:
 
 1.  Open a supported file (TypeScript, JavaScript, Python).
 2.  Write a function.
-3.  Pause for a moment (default 1.5s).
-4.  The extension will automatically insert a docstring above your function.
+3.  The extension will automatically insert a docstring above your function.
 
 Alternatively, you can manually trigger generation:
 *   Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
