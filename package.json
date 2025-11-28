@@ -3,8 +3,12 @@
   "displayName": "AutoDoc Generator",
   "description": "Automatically generates documentation for functions as they are written.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Michaelgathara/autodoc.git"
+  },
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.106.0"
   },
   "categories": [
     "Other"
@@ -47,11 +51,13 @@
     "vscode:prepublish": "npm run package",
     "compile": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
     "watch": "npm run compile -- --sourcemap --watch",
-    "package": "npm run compile -- --minify"
+    "package": "npm run compile -- --minify",
+    "vsix": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@types/vscode": "^1.106.1",
+    "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.0",
     "typescript": "^5.9.3"
   }
