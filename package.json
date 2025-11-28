@@ -37,7 +37,8 @@
         "autodoc.apiKey": {
           "type": "string",
           "default": "",
-          "description": "OpenRouter API Key for AI generation."
+          "description": "OpenRouter API Key for AI generation.",
+          "format": "secret"
         },
         "autodoc.model": {
           "type": "string",
