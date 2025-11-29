@@ -4,27 +4,11 @@ AutoDoc Generator is a VSCode extension that uses AI to automatically generate d
 
 ## Features
 
-- **AI-Powered Documentation**: Uses OpenRouter to access models like GPT-4o, Claude 3.5 Sonnet, and others to generate context-aware docstrings.
+- **AI-Powered Documentation**: Uses OpenRouter to access models from OpenAI, Anthropic, Google, and more 
 - **Automatic Detection**: Intelligently detects new functions and methods as you write them.
 - **Language Support**: Works out of the box with TypeScript, JavaScript, and Python.
 - **Configurable**: Choose your preferred AI model and manage your API keys securely in VSCode settings.
 - **Non-Intrusive**: Runs in the background and only activates when you pause typing to avoid interrupting your flow.
-
-## Requirements
-
-You must have an **OpenRouter API Key** to use this extension.
-
-1.  Sign up at [OpenRouter.ai](https://openrouter.ai).
-2.  Create an API Key.
-3.  Add it to the extension settings.
-
-## Extension Settings
-
-This extension contributes the following settings:
-
-*   `autodoc.apiKey`: Your OpenRouter API Key. (Required)
-*   `autodoc.model`: The AI model to use for generation. Defaults to `openai/gpt-4o`.
-*   `autodoc.enable`: Enable/Disable the automatic generation feature.
 
 ## Usage
 
@@ -43,6 +27,28 @@ This extension contributes the following settings:
 Alternatively, you can manually trigger generation:
 *   Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 *   Run `AutoDoc: Generate Docs`
+
+## Requirements
+
+You must have an **OpenRouter API Key** to use this extension.
+
+1.  Sign up at [OpenRouter.ai](https://openrouter.ai).
+2.  Create an API Key.
+3.  Add it to the extension settings via pressing `f1` and typing `AutoDoc: Set API Key` 
+- The API Key is stored securely on your computer via your OS's keychain (macOS Keychain, Windows Credential Manager, or Gnome Keyring).
+
+#### Adding API key
+![](readme_images/setting-apikey.png)
+
+## Extension Settings
+
+This extension contributes the following settings:
+
+*   `autodoc.model`: The AI model to use for generation. Defaults to `openai/gpt-4o`.
+*   `autodoc.enable`: Enable/Disable the automatic generation feature.
+
+#### Settings
+![](readme_images/settings.png)
 
 ## Known Issues
 

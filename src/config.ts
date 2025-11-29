@@ -1,8 +1,14 @@
 import * as vscode from 'vscode';
 
 export class ConfigService {
-    static get apiKey(): string | undefined {
-        return vscode.workspace.getConfiguration('autodoc').get('apiKey');
+    private static _secrets: vscode.SecretStorage;
+
+    static initialize(context: vscode.ExtensionContext) {
+        this._secrets = context.secrets;
+    }
+
+    static async getApiKey(): Promise<string | undefined> {
+        return await this._secrets.get('autodoc.apiKey');
     }
 
     static get model(): string {

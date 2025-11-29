@@ -40,7 +40,9 @@ export class AutoDocController implements vscode.Disposable {
 
     private async _processDocument(document: vscode.TextDocument, changedRanges: vscode.Range[], force = false) {
         if (!ConfigService.enable) return;
-        if (!ConfigService.apiKey) {
+        
+        const apiKey = await ConfigService.getApiKey();
+        if (!apiKey) {
             console.log('AutoDoc: No API Key set.');
             return;
         }

@@ -8,7 +8,7 @@
     "url": "https://github.com/Michaelgathara/autodoc.git"
   },
   "engines": {
-    "vscode": "^1.106.0"
+    "vscode": "^1.90.0"
   },
   "categories": [
     "Other"
@@ -24,6 +24,10 @@
       {
         "command": "autodoc.generate",
         "title": "AutoDoc: Generate Docs"
+      },
+      {
+        "command": "autodoc.setApiKey",
+        "title": "AutoDoc: Set API Key"
       }
     ],
     "configuration": {
@@ -33,12 +37,6 @@
           "type": "boolean",
           "default": true,
           "description": "Enable automatic documentation generation."
-        },
-        "autodoc.apiKey": {
-          "type": "string",
-          "default": "",
-          "description": "OpenRouter API Key for AI generation.",
-          "format": "secret"
         },
         "autodoc.model": {
           "type": "string",
@@ -57,7 +55,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "@types/vscode": "^1.106.1",
+    "@types/vscode": "^1.84.0",
     "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.0",
     "typescript": "^5.9.3"

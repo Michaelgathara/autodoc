@@ -11,7 +11,7 @@ interface OpenRouterResponse {
 
 export class OpenRouterClient {
     static async generateCompletion(prompt: string): Promise<string> {
-        const apiKey = ConfigService.apiKey;
+        const apiKey = await ConfigService.getApiKey();
         const model = ConfigService.model;
 
         if (!apiKey) {
