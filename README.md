@@ -54,5 +54,5 @@ This extension contributes the following settings:
 
 - Rate limiting may occur depending on your OpenRouter plan.
 - Very large files may take longer to process as the extension analyzes document symbols.
-
+- Sometimes it just doesn't work and requires you continue changing your file 
 
