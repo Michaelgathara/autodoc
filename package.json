@@ -2,7 +2,7 @@
   "name": "autodoc-generator",
   "displayName": "AutoDoc Generator",
   "description": "Automatically generates documentation for functions as they are written.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Michaelgathara/autodoc.git"
