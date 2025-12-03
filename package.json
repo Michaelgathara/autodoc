@@ -1,8 +1,10 @@
 {
-  "name": "autodoc-generator",
-  "displayName": "AutoDoc Generator",
+  "name": "autodoc-ai-docstrings",
+  "displayName": "AutoDoc AI Docstrings",
+  "publisher": "michaelgathara",
   "description": "Automatically generates documentation for functions as they are written.",
   "version": "0.0.2",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Michaelgathara/autodoc.git"

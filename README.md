@@ -14,11 +14,11 @@ AutoDoc Generator is a VSCode extension that uses AI to automatically generate d
 
 ### Generating a new docstring for a function
 
-<img src="readme_images/autodoc-example.gif" alt="AutoDoc Demo">
+<img src="images/autodoc-example.gif" alt="AutoDoc Demo">
 
 ### Changing an existing docstring when a function changes
 
-<img src="readme_images/autodoc-example-new-comment.gif" alt="AutoDoc Change Demo">
+<img src="images/autodoc-example-new-comment.gif" alt="AutoDoc Change Demo">
 
 1.  Open a supported file (TypeScript, JavaScript, Python).
 2.  Write a function.
@@ -38,7 +38,7 @@ You must have an **OpenRouter API Key** to use this extension.
 - The API Key is stored securely on your computer via your OS's keychain (macOS Keychain, Windows Credential Manager, or Gnome Keyring).
 
 #### Adding API key
-![](readme_images/setting-apikey.png)
+![](images/setting-apikey.png)
 
 ## Extension Settings
 
@@ -48,7 +48,7 @@ This extension contributes the following settings:
 *   `autodoc.enable`: Enable/Disable the automatic generation feature.
 
 #### Settings
-![](readme_images/settings.png)
+![](images/settings.png)
 
 ## Known Issues
 
